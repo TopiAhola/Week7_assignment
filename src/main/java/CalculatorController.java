@@ -27,7 +27,7 @@ public class CalculatorController {
             double divide = num1 / num2;
 
 
-            resultLabel.setText("Sum: " + sum + ", Product: " + product);
+            resultLabel.setText("Sum: " + sum + ",\n Product: " + product + ",\n Divide: " + divide + ",\n Subtract: " + subtract );
 
             // Save to DB
             ResultService.saveResult(num1, num2, sum, product,  subtract, divide);
