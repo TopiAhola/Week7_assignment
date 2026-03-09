@@ -2,6 +2,11 @@
 
 1. Take a screenshot of the Jenkins stages performance (only the graphics, not the console output).
 
+<figure>
+    <img src="jenkins_build_steps.png" alt="Docker image UI" width="100%" height="auto">
+    <figcaption>Screenshot of Jenkins build. Dockerhub was very slow.</figcaption>
+</figure>
+
 
 <br>
 
