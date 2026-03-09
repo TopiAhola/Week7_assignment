@@ -21,7 +21,7 @@ services:
       - ./my.cnf:/etc/mysql/conf.d/my.cnf:ro   #config file
 
   app:
-    image: week7assignment:latest
+    image: topiahola/jenkins_docker_repo/week7assignment:latest
     container_name: calculator-app
     depends_on:
       - db

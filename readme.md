@@ -21,3 +21,5 @@
 <br>
 
 3. Submit your repository link along with the screenshots (points 1 and 2) on OMA.
+
+This repo and https://hub.docker.com/repository/docker/topiahola/week7_assignment/general

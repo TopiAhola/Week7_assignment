@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
-        DOCKERHUB_REPO = "topiahola/jenkins_docker_repo"
+        DOCKERHUB_REPO = "topiahola/week7_assignment"
         DOCKER_IMAGE_TAG = "latest"
         BUILD_IMAGE_NAME = "week7assignment"
         DOCKERHUB_CREDENTIALS = "dockerhub_pat" //tai dockehub_pat - Kirjoitusvirhe jenkinsin puolella...
