@@ -37,3 +37,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/JavaFX_SDK_21/javafx-sdk-21.0.10/

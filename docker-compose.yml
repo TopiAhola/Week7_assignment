@@ -6,7 +6,7 @@ services:
     container_name: calculator-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: Test12
+      MYSQL_ROOT_PASSWORD: calc_data_password
       MYSQL_DATABASE: calc_data
     ports:
       - "3307:3306"

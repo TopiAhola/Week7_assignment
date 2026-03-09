@@ -3,7 +3,7 @@ import java.sql.*;
 public class ResultService {
 
     private static final String DB_NAME = "calc_data";
-    private static final String DB_USER = "calc_data_user";
+    private static final String DB_USER = "root";  //calc_data_user for localhost
     private static final String DB_PASSWORD = "calc_data_password";
 
     // Load MariaDB driver
@@ -21,8 +21,8 @@ public class ResultService {
         return host;
     }
 
-    private static String getDatabaseUrl() {
-        return "jdbc:mariadb://" + getDatabaseHost() + ":3306/" + DB_NAME +
+    private static String getDatabaseUrl() {  //port 3306 for localhost
+        return "jdbc:mariadb://" + getDatabaseHost() + ":3307/" + DB_NAME +
                 "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     }
 
