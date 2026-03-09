@@ -1,18 +1,24 @@
-version: '3.8'
-
 services:
   db:
-    image: mariadb:11
+    image: mariadb:latest
     container_name: calculator-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: test1
-      MYSQL_DATABASE: calc_data2
+      MARIADB_ROOT_PASSWORD: "longertest"
+      MARIADB_DATABASE: "calc_data2"
+      #MYSQL_ROOT_PASSWORD: test1
+      #MYSQL_DATABASE: calc_data2
+      MARIADB_USER: user
+      MARIADB_PASSWORD: password
+
+
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init:/docker-entrypoint-initdb.d/init
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf:ro   #config file
 
   app:
     image: week7assignment:latest
@@ -20,13 +26,18 @@ services:
     depends_on:
       - db
     environment:
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: test1
+      DB_HOST: db  # tai db  127.0.0.1 ei toimi
+      DB_PORT: "3306"
+      DB_NAME: "calc_data2"
+      DB_USER: "root"
+      DB_PASSWORD: "longertest"
       DISPLAY: host.docker.internal:0
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
 #    network_mode: bridge # it cancels network of docker -> docker cannot find host db.
 volumes:
   db_data:
+
+
+
+

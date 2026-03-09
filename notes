@@ -15,8 +15,18 @@ docker build -t week7assignment .
 #docker compose komento:
 docker compose up
 
+# Force rebuild images before starting
+docker compose up --build
+
+
 #sammuta containerit:
 docker compose down
+
+#sammuta, poista volumet
+docker compose down -v
+
+#sammuta, poista imaget
+docker compose down --rmi all
 
 
 #miten yhdisää tietokantaan

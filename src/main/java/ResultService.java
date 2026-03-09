@@ -2,11 +2,13 @@ import java.sql.*;
 
 public class ResultService {
 
+
+    private static String DB_USER = "user";
+    private static String DB_PASSWORD = "password";
+
+    private static String DB_HOST = "db";
+    private static String DB_PORT = "3308";
     private static String DB_NAME = "calc_data2";
-    private static String DB_USER = "root";  //calc_data_user for localhost
-    private static String DB_PASSWORD = "calc_data_password";
-    private static String DB_HOST = "localhost";
-    private static String DB_PORT = "3306";
 
     // Load MariaDB driver
     static {
@@ -17,26 +19,36 @@ public class ResultService {
         }
     }
 
-    private static String getDatabaseHost() {
+    private static void getDatabaseHost() {
         String host = System.getenv("DB_HOST");
-        if (host == null || host.isEmpty()) host = "localhost"; // use Docker service name
-        return host;
+
+        if (host == null || host.isEmpty()) {
+            // use Docker service name
+            DB_HOST = "db";
+            return;
+        } else {
+            DB_PORT = System.getenv("DB_PORT");
+            DB_USER = System.getenv("DB_USER");
+            DB_PASSWORD = System.getenv("DB_PASSWORD");
+            DB_NAME = System.getenv("DB_NAME");
+        }
+
+
     }
 
     private static String getDatabaseUrl() {  //port 3306 for localhost
-        DB_HOST = getDatabaseHost();
-        DB_PORT = System.getenv("DB_PORT");
-        DB_USER = System.getenv("DB_USER");
-        DB_PASSWORD = System.getenv("DB_PASSWORD");
+        getDatabaseHost();
 
-        return "jdbc:mariadb://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME +
-                "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+        return "jdbc:mariadb://" + DB_HOST + ":" + DB_PORT  + "/" + DB_NAME
+
+                +"?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     }
 
     public static void saveResult(double n1, double n2, double sum, double product, double subtract, double divide) {
 
         String dbUrl = getDatabaseUrl();
-        System.out.println(dbUrl);
+        System.out.println("URL:" +dbUrl);
+        System.out.println("Envs:" +DB_USER + " " + DB_PASSWORD + " " + DB_HOST + " " + DB_PORT + " " + DB_NAME);
 
         try (Connection conn = DriverManager.getConnection(dbUrl, DB_USER, DB_PASSWORD);
              Statement stmt = conn.createStatement()) {
